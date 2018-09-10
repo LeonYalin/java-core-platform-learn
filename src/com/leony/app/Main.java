@@ -33,7 +33,7 @@ public class Main {
         workingWithFiles.readAllLinesUsingFilesUtil(filePath);
 
         printMessage("WorkingWithFiles: create zip file");
-        workingWithFiles.createZipFile("gradesZip");
+        workingWithFiles.createAndFillZipFile("grades.zip", filePath, filePath2);
     }
 
     private static void printMessage(String msg) {

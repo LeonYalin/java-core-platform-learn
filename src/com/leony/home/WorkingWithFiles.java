@@ -3,8 +3,9 @@ package com.leony.home;
 import java.io.*;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.nio.charset.Charset;
 import java.nio.file.*;
-import java.util.HashMap;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -75,23 +76,52 @@ public class WorkingWithFiles {
         }
     }
 
-    public void createZipFile(String zipName) {
-        try (FileSystem zipFs = this.openZip(Paths.get(zipName))) {
-
+    public void createAndFillZipFile(String zipName, String... paths) {
+        try (FileSystem zipFs = this.createZip(Paths.get(zipName))) {
+            for (String path: paths) {
+                Files.copy(
+                        Paths.get(path),
+                        zipFs.getPath("/" + Paths.get(path).getFileName()),
+                        StandardCopyOption.REPLACE_EXISTING);
+            }
+            this.addFileToZipUsingBuggeredReader(zipFs);
+            this.addFileToZipUsingFilesWrite(zipFs);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }
 
-    private FileSystem openZip(Path zipPath) throws IOException, URISyntaxException {
-        Map<String, String> props = new HashMap<>();
-        props.put("create", "true");
+    private void addFileToZipUsingFilesWrite(FileSystem zipFs) throws IOException {
+        String[] rows = new String[] {
+                "a",
+                "b b",
+                "c c c",
+                "d d d d",
+                "e e e e e"
+        };
+        Files.write(zipFs.getPath("/newFile2.txt"), Arrays.asList(rows), Charset.defaultCharset(), StandardOpenOption.CREATE);
+    }
 
-        FileSystem zipFs = FileSystems.newFileSystem(
+    private void addFileToZipUsingBuggeredReader(FileSystem zipFs) throws IOException {
+        String[] rows = new String[] {
+                "1",
+                "2 2",
+                "3 3 3",
+                "4 4 4 4",
+                "5 5 5 5 5"
+        };
+
+        try(BufferedWriter writer = Files.newBufferedWriter(zipFs.getPath("/newFile1.txt"))) {
+            for (String row: rows) {
+                writer.write(row);
+                writer.newLine();
+            }
+        }
+    }
+
+    private FileSystem createZip(Path zipPath) throws IOException, URISyntaxException {
+        return FileSystems.newFileSystem(
             new URI("jar:file", zipPath.toUri().getPath(), null),
-            Map.of("create", "true")
-        );
-
-        return zipFs;
+            Map.of("create", "true"));
     }
 }
