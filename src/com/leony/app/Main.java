@@ -1,5 +1,8 @@
 package com.leony.app;
 
+import com.leony.home.AppExecutionEnv;
+import com.leony.home.FormattingAndRegex;
+import com.leony.home.WorkingWithCollections;
 import com.leony.home.WorkingWithFiles;
 import java.io.File;
 
@@ -7,6 +10,78 @@ public class Main {
 
     public static void main(String[] args) {
         workingWithFiles();
+        formattingAndRegex();
+        workingWithCollections();
+        appExecutionEnv(args);
+    }
+
+    private static void appExecutionEnv(String[] args) {
+        AppExecutionEnv appExecutionEnv = new AppExecutionEnv();
+        String appPropsPath = new File("").getAbsolutePath() + "\\src\\com\\leony\\resources\\app.properties";
+        String defaultsPropsPath = new File("").getAbsolutePath() + "\\src\\com\\leony\\resources\\defaults.properties";
+        String appPropsPathXml = new File("").getAbsolutePath() + "\\src\\com\\leony\\resources\\app.xml";
+
+        printMessage("AppExecutionEnv: print cmd arguments");
+        appExecutionEnv.printCmdArguments(args);
+
+        printMessage("AppExecutionEnv: save persistence properties");
+        appExecutionEnv.savePersistenceProperties(appPropsPath);
+        appExecutionEnv.savePersistenceProperties(appPropsPathXml);
+
+        printMessage("AppExecutionEnv: load persistence properties");
+        appExecutionEnv.loadPersistenceProperties(appPropsPath);
+        appExecutionEnv.loadPersistenceProperties(appPropsPathXml);
+
+        printMessage("AppExecutionEnv: use default properties");
+        appExecutionEnv.useDefaultProperties();
+
+        printMessage("AppExecutionEnv: load user properties and merge with default properties");
+        appExecutionEnv.loadUserPropsAndMergeWithDefaultProps(appPropsPath, defaultsPropsPath);
+
+        printMessage("AppExecutionEnv: print system properties");
+        appExecutionEnv.printSystemProperties();
+    }
+
+    private static void workingWithCollections() {
+        WorkingWithCollections workingWithCollections = new WorkingWithCollections();
+
+        printMessage("WorkingWithCollections: create simple array list");
+        workingWithCollections.createSimpleArrayList();
+
+        printMessage("WorkingWithCollections: use common collections methods");
+        workingWithCollections.useCommonCollectionsMethods();
+
+        printMessage("WorkingWithCollections: use Java 8 collections methods");
+        workingWithCollections.useJava8CollectionsMethods();
+
+        printMessage("WorkingWithCollections: convert between collection and array");
+        workingWithCollections.convertBetweenCollectionAndArray();
+
+        printMessage("WorkingWithCollections: play with common collections");
+        workingWithCollections.playWithCommonCollections();
+
+        printMessage("WorkingWithCollections: play with map collections");
+        workingWithCollections.playWithMapCollections();
+    }
+
+    private static void formattingAndRegex() {
+        FormattingAndRegex formattingAndRegex = new FormattingAndRegex();
+        String filePath = new File("").getAbsolutePath() + "\\src\\com\\leony\\resources\\grades3.txt";
+
+        printMessage("FormattingAndRegex: join string using StringJoiner");
+        String[] words = new String[] {"first", "second", "third"};
+        formattingAndRegex.joinStringsUsingStringJoiner(words);
+
+        printMessage("FormattingAndRegex: format string using StringFormat");
+        formattingAndRegex.formatStringUsingStringFormat("lalala", "lululu", "1.234567");
+        formattingAndRegex.printClassObjectUsingFormattableInterface(formattingAndRegex);
+        formattingAndRegex.writeFormattedContentFoFileUsingFormatter(filePath);
+
+        printMessage("FormattingAndRegex: use regex methods from String class");
+        formattingAndRegex.useRegexMethodsFromStringClass();
+
+        printMessage("FormattingAndRegex: use pattern and matcher classes");
+        formattingAndRegex.usePatternAndMatcherClasses();
     }
 
     public static void workingWithFiles() {
