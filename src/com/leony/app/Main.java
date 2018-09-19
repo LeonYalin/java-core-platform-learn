@@ -1,18 +1,33 @@
 package com.leony.app;
 
-import com.leony.home.AppExecutionEnv;
-import com.leony.home.FormattingAndRegex;
-import com.leony.home.WorkingWithCollections;
-import com.leony.home.WorkingWithFiles;
+import com.leony.home.*;
+
 import java.io.File;
 
 public class Main {
 
     public static void main(String[] args) {
-        workingWithFiles();
-        formattingAndRegex();
-        workingWithCollections();
-        appExecutionEnv(args);
+//        workingWithFiles();
+//        formattingAndRegex();
+//        workingWithCollections();
+//        appExecutionEnv(args);
+        workingWithLogs();
+    }
+
+    private static void workingWithLogs() {
+        WorkingWithLogs workingWithLogs = new WorkingWithLogs();
+
+        printMessage("WorkingWithLogs: print simple log");
+        workingWithLogs.printSimpleLogs();
+
+        printMessage("WorkingWithLogs: create a custom logger");
+        workingWithLogs.createCustomLogger();
+
+        printMessage("WorkingWithLogs: log data to file");
+        workingWithLogs.logDataToFile();
+
+        printMessage("WorkingWithLogs: use parent and child loggers");
+        workingWithLogs.useParentAndChildLoggers();
     }
 
     private static void appExecutionEnv(String[] args) {
