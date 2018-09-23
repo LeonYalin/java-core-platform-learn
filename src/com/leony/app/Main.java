@@ -11,7 +11,27 @@ public class Main {
 //        formattingAndRegex();
 //        workingWithCollections();
 //        appExecutionEnv(args);
-        workingWithLogs();
+//        workingWithLogs();
+        multithreadingAndConcurrency();
+    }
+
+    private static void multithreadingAndConcurrency() {
+        MultithreadingAndConcurrency multithreadingAndConcurrency = new MultithreadingAndConcurrency();
+
+        printMessage("MultithreadingAndConcurrency: create and run simple threads");
+        multithreadingAndConcurrency.createAndRunSimpleThreads();
+
+        printMessage("MultithreadingAndConcurrency: create and run threads using a thread pool");
+        multithreadingAndConcurrency.createAndRunThreadsUsingThreadPool();
+
+        printMessage("MultithreadingAndConcurrency: get thread results using Callable");
+        multithreadingAndConcurrency.getThreadResultsUsingCallable();
+
+        printMessage("MultithreadingAndConcurrency: use synchronized blocks");
+        multithreadingAndConcurrency.useSynchronizedBlocks();
+
+        printMessage("MultithreadingAndConcurrency: more synchronized tools");
+        multithreadingAndConcurrency.moreSynchronizedTools();
     }
 
     private static void workingWithLogs() {
