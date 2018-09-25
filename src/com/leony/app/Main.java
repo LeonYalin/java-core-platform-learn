@@ -12,7 +12,15 @@ public class Main {
 //        workingWithCollections();
 //        appExecutionEnv(args);
 //        workingWithLogs();
-        multithreadingAndConcurrency();
+//        multithreadingAndConcurrency();
+        workingWithAnnotations();
+    }
+
+    private static void workingWithAnnotations() {
+        WorkingWithAnnotations workingWithAnnotations = new WorkingWithAnnotations();
+
+        printMessage("WorkingWithAnnotation: use simple annotations");
+        workingWithAnnotations.useSimpleAnnotations();
     }
 
     private static void multithreadingAndConcurrency() {
