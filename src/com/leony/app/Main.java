@@ -7,14 +7,22 @@ import java.io.File;
 public class Main {
 
     public static void main(String[] args) {
-//        workingWithFiles();
-//        formattingAndRegex();
-//        workingWithCollections();
-//        appExecutionEnv(args);
-//        workingWithLogs();
-//        multithreadingAndConcurrency();
+        workingWithFiles();
+        formattingAndRegex();
+        workingWithCollections();
+        appExecutionEnv(args);
+        workingWithLogs();
+        multithreadingAndConcurrency();
         runtimeTypeInfoAndReflection();
         workingWithAnnotations();
+        persistingAndSerialization();
+    }
+
+    private static void persistingAndSerialization() {
+        PersistingAndSerialization persistingAndSerialization = new PersistingAndSerialization();
+
+        printMessage("PersistingAndSerialization: serializing objects");
+        persistingAndSerialization.serializingObjects();
     }
 
     private static void workingWithAnnotations() {
