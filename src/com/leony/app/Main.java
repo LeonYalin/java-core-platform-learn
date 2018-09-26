@@ -13,6 +13,7 @@ public class Main {
 //        appExecutionEnv(args);
 //        workingWithLogs();
 //        multithreadingAndConcurrency();
+        runtimeTypeInfoAndReflection();
         workingWithAnnotations();
     }
 
@@ -21,6 +22,16 @@ public class Main {
 
         printMessage("WorkingWithAnnotation: use simple annotations");
         workingWithAnnotations.useSimpleAnnotations();
+    }
+
+    private static void runtimeTypeInfoAndReflection() {
+        RuntimeTypeInfoAndReflection runtimeTypeInfoAndReflection = new RuntimeTypeInfoAndReflection();
+
+        printMessage("RuntimeTypeInfoAndReflection: get class type information");
+        runtimeTypeInfoAndReflection.getClassTypeInformation();
+
+        printMessage("RuntimeTypeInfoAndReflection: interact with class type information");
+        runtimeTypeInfoAndReflection.interactWithClassTypeInformation();
     }
 
     private static void multithreadingAndConcurrency() {
